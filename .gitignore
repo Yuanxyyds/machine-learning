@@ -1,10 +1,14 @@
 venv/
-*.log
-food-101/src/__pycache__/
+*__pycache__/
 
 # Models
 *keras
+food-101/models/
 
 # Data
 food-101/data/
 food-101/processed_data/
+
+# Logs
+*.log
+food-101/logs/
