@@ -8,6 +8,7 @@ This script provides functionality for:
     - Generating data for training and validation using data augmentation.
     - Training and fine-tuning deep learning models, including both baseline and transfer learning approaches.
     - Running predictions using a pre-trained model on a new image.
+    - Comparing and showing the summary plots for each models 
 
 Modules:
     - config: Contains configuration settings like dataset paths, model hyperparameters, etc.
@@ -15,6 +16,7 @@ Modules:
     - data_loader: Provides functions for visualizing and splitting the dataset.
     - prepare: Contains system preparation and hardware check routines.
     - train: Handles the model training process, including both baseline and fine-tuning methods.
+    - result: Shows the summary plots for the models
 
 Instructions:
     - Uncomment the relevant lines in the `if __name__ == "__main__":` block to run different parts of the pipeline.
@@ -25,8 +27,7 @@ Usage:
     python main.py  # Uncomment and modify sections based on the desired functionality.
 """
 
-
-import config, model, data_loader, prepare, train
+import config, model, data_loader, prepare, train, result
 
 if __name__ == "__main__":
     # prepare.check_gpu_init()
@@ -52,4 +53,48 @@ if __name__ == "__main__":
     # model.predict("food-101/models/vgg_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
     # model.predict("food-101/models/inception_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
     # model.predict("food-101/models/resnet_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
+    result.plot_accuracy(
+        [
+            "food-101/logs/baseline_model_20class.csv",
+            "food-101/logs/vgg_model_20_class.csv",
+            "food-101/logs/inception_model_20_class.csv",
+            "food-101/logs/resnet_model_20_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "val_accuracy",
+        "Validation Accuracy",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/baseline_model_20class.csv",
+            "food-101/logs/vgg_model_20_class.csv",
+            "food-101/logs/inception_model_20_class.csv",
+            "food-101/logs/resnet_model_20_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "val_loss",
+        "Validation Loss",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/baseline_model_20class.csv",
+            "food-101/logs/vgg_model_20_class.csv",
+            "food-101/logs/inception_model_20_class.csv",
+            "food-101/logs/resnet_model_20_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "accuracy",
+        "Accuracy",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/baseline_model_20class.csv",
+            "food-101/logs/vgg_model_20_class.csv",
+            "food-101/logs/inception_model_20_class.csv",
+            "food-101/logs/resnet_model_20_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "loss",
+        "Loss",
+    )
     pass
