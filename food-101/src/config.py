@@ -27,7 +27,8 @@ class Config:
     """
 
     BATCH_SIZE = 32
-    N_CLASSES = 20
+    N_CLASSES = 22
+    EPOCHS = 100
     IMAGE_WIDTH = 299
     IMAGE_HEIGHT = 299
     DATA_DIR = "food-101/data/images/"
@@ -53,6 +54,8 @@ class Config:
         "dumplings",
         "french_fries",
         "hot_dog",
+        "hamburger",
+        "frozen_yogurt",
         "pizza",
         "ramen",
         "steak",

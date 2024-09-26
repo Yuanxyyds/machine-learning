@@ -33,14 +33,7 @@ import os
 from keras.api.models import Sequential
 from keras.api.applications import VGG19, ResNet152V2
 from keras.api.applications.inception_v3 import InceptionV3
-from keras.api.layers import (
-    Dense,
-    Dropout,
-    Flatten,
-    Conv2D,
-    MaxPool2D,
-    GlobalAvgPool2D
-)
+from keras.api.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, GlobalAvgPool2D
 from keras.src.legacy.preprocessing.image import ImageDataGenerator
 from keras.api.callbacks import CSVLogger, EarlyStopping
 import keras_tuner as kt
@@ -155,7 +148,7 @@ def base_line_empty_model(generator, validation_generator):
     # Train the model with early stopping
     history = model.fit(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
         callbacks=[early_stopping, csv_logger],
     )
@@ -219,7 +212,7 @@ def fine_tune_vgg_model(generator, validation_generator):
     tuner = kt.Hyperband(
         build_model,
         objective="val_accuracy",
-        max_epochs=20,
+        max_epochs=Config.EPOCHS,
         factor=3,
         directory=f"{Config.MODELS_DIR}vggturner/",
         project_name="food_classification",
@@ -233,9 +226,9 @@ def fine_tune_vgg_model(generator, validation_generator):
     # Search for the best hyperparameters
     tuner.search(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
-        callbacks=[early_stopping, csv_logger],
+        callbacks=[early_stopping],
     )
 
     # Get the best hyperparameters
@@ -244,15 +237,15 @@ def fine_tune_vgg_model(generator, validation_generator):
 
     # Build the model with the best hyperparameters
     vgg_model = tuner.hypermodel.build(best_hps)
-    
+
     csv_logger = CSVLogger(f"{Config.LOGS_DIR}vgg_model_{Config.N_CLASSES}_class.log")
 
     # Train the best model with the best hyperparameters
     history_vgg_model = vgg_model.fit(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
-        callbacks=[early_stopping],
+        callbacks=[early_stopping, csv_logger],
     )
 
     # Save the best model and its weights
@@ -309,7 +302,7 @@ def fine_tune_inception_model(generator, validation_generator):
     tuner = kt.Hyperband(
         build_model,
         objective="val_accuracy",
-        max_epochs=20,
+        max_epochs=Config.EPOCHS,
         factor=3,
         directory=f"{Config.MODELS_DIR}inceptionturner/",
         project_name="food_classification_inception",
@@ -323,9 +316,9 @@ def fine_tune_inception_model(generator, validation_generator):
     # Search for the best hyperparameters
     tuner.search(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
-        callbacks=[early_stopping, csv_logger],
+        callbacks=[early_stopping],
     )
 
     # Get the best hyperparameters
@@ -341,7 +334,7 @@ def fine_tune_inception_model(generator, validation_generator):
     # Train the best model
     history_inception_model = inception_model.fit(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
         callbacks=[early_stopping, csv_logger],
     )
@@ -391,7 +384,9 @@ def fine_tune_resnet_model(generator, validation_generator):
                 Dropout(
                     hp.Float("dropout", 0, 0.5, step=0.1, default=0.5)
                 ),  # Tune the dropout rate
-                Dense(Config.N_CLASSES, activation="softmax"),  # Output layer for classification
+                Dense(
+                    Config.N_CLASSES, activation="softmax"
+                ),  # Output layer for classification
             ]
         )
         model.compile(
@@ -403,7 +398,7 @@ def fine_tune_resnet_model(generator, validation_generator):
     tuner = kt.Hyperband(
         build_model,
         objective="val_accuracy",
-        max_epochs=20,
+        max_epochs=Config.EPOCHS,
         factor=3,
         directory=f"{Config.MODELS_DIR}resnetturner/",
         project_name="food_classification_resnet",
@@ -414,16 +409,12 @@ def fine_tune_resnet_model(generator, validation_generator):
         monitor="val_loss", patience=10, restore_best_weights=True
     )
 
-    csv_logger = CSVLogger(
-        f"{Config.LOGS_DIR}resnet_model_{Config.N_CLASSES}_class.log"
-    )
-
     # Search for the best hyperparameters
     tuner.search(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
-        callbacks=[early_stopping, csv_logger],
+        callbacks=[early_stopping],
     )
 
     # Get the best hyperparameters
@@ -433,17 +424,18 @@ def fine_tune_resnet_model(generator, validation_generator):
     # Build the best model with the best hyperparameters
     resnet_model = tuner.hypermodel.build(best_hps)
 
+    csv_logger = CSVLogger(
+        f"{Config.LOGS_DIR}resnet_model_{Config.N_CLASSES}_class.log"
+    )
     # Train the best model
     history_resnet_model = resnet_model.fit(
         generator,
-        epochs=20,
+        epochs=Config.EPOCHS,
         validation_data=validation_generator,
         callbacks=[early_stopping, csv_logger],
     )
 
     # Save the best model and weights
-    resnet_model.save(
-        f"{Config.MODELS_DIR}resnet_model_{Config.N_CLASSES}_class.keras"
-    )
-    
+    resnet_model.save(f"{Config.MODELS_DIR}resnet_model_{Config.N_CLASSES}_class.keras")
+
     return history_resnet_model
