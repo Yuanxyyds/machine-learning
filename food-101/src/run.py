@@ -35,66 +35,65 @@ if __name__ == "__main__":
     # data_loader.visualize_dataset()
     # data_loader.split_train_and_test_data()
     # data_loader.split_mini_train_and_test_data()
-    gen, gen_v = train.data_generator()
-    train.base_line_empty_model(gen, gen_v)
-    # predict("food-101/models/baseline_model_20class.keras", "food-101/website_data/ramen1.jpg")
+    # gen, gen_v = train.data_generator()
+    # train.base_line_empty_model(gen, gen_v)
     # train.fine_tune_vgg_model(gen, gen_v)
     # train.fine_tune_inception_model(gen, gen_v)
-    train.fine_tune_resnet_model(gen, gen_v)
-    # model.predict("food-101/models/baseline_model_20class.keras", "food-101/website_data/apple_pie_1.jpg")
-    # model.predict("food-101/models/vgg_model_20_class.keras", "food-101/website_data/apple_pie_1.jpg")
-    # model.predict("food-101/models/inception_model_20_class.keras", "food-101/website_data/apple_pie_1.jpg")
-    # model.predict("food-101/models/resnet_model_20_class.keras", "food-101/website_data/apple_pie_1.jpg")
-    # model.predict("food-101/models/baseline_model_20class.keras", "food-101/website_data/ramen1.jpg")    
-    # model.predict("food-101/models/vgg_model_20_class.keras", "food-101/website_data/ramen1.jpg")
-    # model.predict("food-101/models/inception_model_20_class.keras", "food-101/website_data/ramen1.jpg")
-    # model.predict("food-101/models/resnet_model_20_class.keras", "food-101/website_data/ramen1.jpg")
-    # model.predict("food-101/models/baseline_model_20class.keras", "food-101/website_data/fish_and_chips1.jpeg")
-    # model.predict("food-101/models/vgg_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
-    # model.predict("food-101/models/inception_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
-    # model.predict("food-101/models/resnet_model_20_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
-    # result.plot_accuracy(
-    #     [
-    #         "food-101/logs/baseline_model_20class.csv",
-    #         "food-101/logs/vgg_model_20_class.csv",
-    #         "food-101/logs/inception_model_20_class.csv",
-    #         "food-101/logs/resnet_model_20_class.csv",
-    #     ],
-    #     ["Baseline", "VGG", "InceptionV3", "ResNet152"],
-    #     "val_accuracy",
-    #     "Validation Accuracy",
-    # )
-    # result.plot_accuracy(
-    #     [
-    #         "food-101/logs/baseline_model_20class.csv",
-    #         "food-101/logs/vgg_model_20_class.csv",
-    #         "food-101/logs/inception_model_20_class.csv",
-    #         "food-101/logs/resnet_model_20_class.csv",
-    #     ],
-    #     ["Baseline", "VGG", "InceptionV3", "ResNet152"],
-    #     "val_loss",
-    #     "Validation Loss",
-    # )
-    # result.plot_accuracy(
-    #     [
-    #         "food-101/logs/baseline_model_20class.csv",
-    #         "food-101/logs/vgg_model_20_class.csv",
-    #         "food-101/logs/inception_model_20_class.csv",
-    #         "food-101/logs/resnet_model_20_class.csv",
-    #     ],
-    #     ["Baseline", "VGG", "InceptionV3", "ResNet152"],
-    #     "accuracy",
-    #     "Accuracy",
-    # )
-    # result.plot_accuracy(
-    #     [
-    #         "food-101/logs/baseline_model_20class.csv",
-    #         "food-101/logs/vgg_model_20_class.csv",
-    #         "food-101/logs/inception_model_20_class.csv",
-    #         "food-101/logs/resnet_model_20_class.csv",
-    #     ],
-    #     ["Baseline", "VGG", "InceptionV3", "ResNet152"],
-    #     "loss",
-    #     "Loss",
-    # )
+    # train.fine_tune_resnet_model(gen, gen_v)
+    model.predict("food-101/models/22class32batch100epochs/baseline_model_22_class.keras", "food-101/website_data/apple_pie_1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/vgg_model_22_class.keras", "food-101/website_data/apple_pie_1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/inception_model_22_class.keras", "food-101/website_data/apple_pie_1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/resnet_model_22_class.keras", "food-101/website_data/apple_pie_1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/baseline_model_22_class.keras", "food-101/website_data/ramen1.jpg")    
+    model.predict("food-101/models/22class32batch100epochs/vgg_model_22_class.keras", "food-101/website_data/ramen1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/inception_model_22_class.keras", "food-101/website_data/ramen1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/resnet_model_22_class.keras", "food-101/website_data/ramen1.jpg")
+    model.predict("food-101/models/22class32batch100epochs/baseline_model_22_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
+    model.predict("food-101/models/22class32batch100epochs/vgg_model_22_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
+    model.predict("food-101/models/22class32batch100epochs/inception_model_22_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
+    model.predict("food-101/models/22class32batch100epochs/resnet_model_22_class.keras", "food-101/website_data/fish_and_chips1.jpeg")
+    result.plot_accuracy(
+        [
+            "food-101/logs/22class32batch100epochs/baseline_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/vgg_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/inception_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/resnet_model_22_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "val_accuracy",
+        "Validation Accuracy",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/22class32batch100epochs/baseline_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/vgg_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/inception_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/resnet_model_22_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "val_loss",
+        "Validation Loss",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/22class32batch100epochs/baseline_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/vgg_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/inception_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/resnet_model_22_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "accuracy",
+        "Accuracy",
+    )
+    result.plot_accuracy(
+        [
+            "food-101/logs/22class32batch100epochs/baseline_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/vgg_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/inception_model_22_class.csv",
+            "food-101/logs/22class32batch100epochs/resnet_model_22_class.csv",
+        ],
+        ["Baseline", "VGG", "InceptionV3", "ResNet152"],
+        "loss",
+        "Loss",
+    )
     pass

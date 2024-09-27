@@ -55,7 +55,7 @@ def plot_accuracy(files, model_names, y_feature_label, y_feature_name):
             label=f"Model {model_names[i]} {y_feature_name}",
         )
 
-    plt.title(f"Epoch vs {y_feature_name} for 4 Models")
+    plt.title(f"{y_feature_name} vs Epoch for 4 Models")
     plt.xlabel("Epoch")
     plt.ylabel(y_feature_name)
     plt.legend()
