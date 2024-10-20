@@ -13,4 +13,4 @@ food-101/processed_data/
 *.log
 
 # Model
-llama3.2/llama3.2-3B-Instruct/
+llama3.2/llama3.2-3B*

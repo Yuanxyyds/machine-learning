@@ -1,0 +1,5 @@
+## Fine-tune Llama 3.2 - StevenAI
+
+This personal project focuses on creating an AI chatbot capable of answering any questions about me. The chatbot is built by fine-tuning the LLaMA 3.2 model (3 billion parameters) using around 1,000 Q&A pairs related to my personal background and experience.
+
+To optimize resources, I leveraged Unsloth, which delivers 2x faster speeds and reduces VRAM usage by 50%. I also used a LoRA adapter for parameter-efficient fine-tuning, enabling efficient training within my home lab setup, which includes a 16GB 4060Ti GPU. The model was trained with several LoRA ranks (8, 16, 32, 64, 128) and used a LoRA alpha set at 2x the LoRA rank over 10 epochs. The best-performing configuration had a LoRA rank of 16 and LoRA alpha of 32, achieving a performance range of 70%-85% across different answers. Due to the model’s size (3 billion parameters) and resource constraints, it may occasionally make mistakes. Feel free to ask me some questions!
