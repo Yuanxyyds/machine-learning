@@ -1,4 +1,10 @@
-tensorflow>=2.9.0
-keras-tuner>=1.1.0
-matplotlib>=3.5.0
-numpy>=1.21.0
+tensorflow>=2.17.0
+keras-tuner>=1.4.7
+matplotlib>=3.9.2
+numpy>=1.26.4
+torch>=2.4.1
+transformers>=4.44.2
+unsloth
+peft>=0.13.2
+datasets>=3.0.1
+accelerate>=1.0.1
